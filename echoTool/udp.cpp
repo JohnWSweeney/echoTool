@@ -10,7 +10,7 @@ int udpSocket::socketReadStatus(SOCKET udpSocketServer, long s, long us)
 	timeout.tv_sec = s;
 	timeout.tv_usec = us;
 
-	return select(0, &readfds, 0, 0, &timeout);
+	return select(0, &readfds, 0, 0, &timeout);//Check socket RX status.
 }
 
 int udpSocket::socketWriteStatus(SOCKET udpSocketServer, long s, long us)
@@ -23,27 +23,28 @@ int udpSocket::socketWriteStatus(SOCKET udpSocketServer, long s, long us)
 	timeout.tv_sec = s;
 	timeout.tv_usec = us;
 
-	return select(0, 0, &writefds, 0, &timeout);
+	return select(0, 0, &writefds, 0, &timeout);//Check socket TX status.
 }
 
 void udpSocket::openSocket(int localPortNum)
 {
-	//Initiate Winsock dll.
+	//Open Winsock dll.
 	WSADATA WinSockData;
 	WSAStartup(MAKEWORD(2, 2), &WinSockData);
 	std::cout << "WSAStarup success" << std::endl;
 
-	//Create local socket.
+	//Create UDP socket.
 	udpSocketServer = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	std::cout << "Server socket opened." << std::endl;
 
 	//Local socket parameters.
-	struct sockaddr_in localSock;
+	struct sockaddr_in localSock;//new socket struct
 	localSock.sin_family = AF_INET;
 	localSock.sin_addr.s_addr = INADDR_ANY;
 	localSock.sin_port = htons(localPortNum);
 
-	result = bind(udpSocketServer, (SOCKADDR *)&localSock, sizeof(localSock));
+	//Assign address/port to new socket.
+	result = bind(udpSocketServer, (SOCKADDR *)&localSock, sizeof(localSock)); 
 	if (result == SOCKET_ERROR)
 	{
 		std::cout << "Bind failed with error: " << WSAGetLastError() << std::endl;
@@ -52,13 +53,13 @@ void udpSocket::openSocket(int localPortNum)
 
 int udpSocket::rx(datagram& rxDatagram, long s, long us)
 {
-	struct sockaddr_in rxAddr;
+	struct sockaddr_in rxAddr;//Dummy socket struct to hold RX packet fields.
 	int rxAddrSize = sizeof(rxAddr);
 
-	char rxbuf[1472] = { 0 };
-	int rxbuflen = sizeof(rxbuf);
+	char rxbuf[1472] = { 0 }; //Payload buffer.
+	int rxbuflen = sizeof(rxbuf);//Payload buffer size in bytes.
 
-	int rxReady = socketReadStatus(udpSocketServer, s, us);
+	int rxReady = socketReadStatus(udpSocketServer, s, us);//Check if socket RX ready.
 	if (rxReady > 0)
 	{
 		int rxbytes = recvfrom(udpSocketServer, rxbuf, rxbuflen, 0, (SOCKADDR *) & rxAddr, &rxAddrSize);
@@ -85,7 +86,7 @@ void udpSocket::tx(const char* destIP, int destPortNum, const char *buf, int len
 	destSock.sin_addr.s_addr = inet_addr(destIP);
 	destSock.sin_port = destPortNum;
 
-	int txReady = socketWriteStatus(udpSocketServer, s, us);
+	int txReady = socketWriteStatus(udpSocketServer, s, us);//Check if socket TX ready.
 	if (txReady > 0)
 	{
 		result = sendto(udpSocketServer, buf, len, 0, (SOCKADDR *)& destSock, sizeof(destSock));
