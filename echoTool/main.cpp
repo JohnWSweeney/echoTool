@@ -2,8 +2,6 @@
 
 int main()
 {
-	while (true)
-	{
-		echo(789, 0, 1);
-	}
+	echo(789, 0, 1);
+	Sleep(5000);
 }
