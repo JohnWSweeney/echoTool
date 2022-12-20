@@ -123,10 +123,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="select.h" />
     <ClInclude Include="udp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="select.cpp" />
     <ClCompile Include="udp.cpp" />
     <ClCompile Include="udpFunctions.cpp" />
   </ItemGroup>

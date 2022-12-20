@@ -1,4 +1,7 @@
 #include "udp.h"
+#include "select.h"
+
+extern std::atomic<bool> echoStatus;
 
 void echo(int localPortNum, long s, long us)
 {
@@ -6,9 +9,9 @@ void echo(int localPortNum, long s, long us)
 	udpEcho.openSocket(localPortNum);
 
 	int result = 0;
-	std::cout << "listening...\n" << std::endl;
+	std::cout << "Listening...\n" << std::endl;
 	datagram rxDatagram;
-	while (result == 0)
+	while (echoStatus)
 	{
 		result = udpEcho.rx(rxDatagram, s, us);
 		if (result > 0)
