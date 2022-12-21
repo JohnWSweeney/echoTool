@@ -6,6 +6,7 @@ The app accepts three case-sensitive commands: start, stop, and exit.
 
 Enter *echo start port number* to start the echo server on the desired port. For example,
 > echo start 123
+
 echoes packets on local port 123.
 
 Enter *echo stop* to stop the echo server.
