@@ -1,6 +1,6 @@
 # echoTool
 
-A simple command line interface UDP echo server. Packets are echoed on a port specified by the user. Incoming packets' source IP address, source port, payload size (bytes), and payload are displayed in the console.
+A simple command line interface UDP echo server. Packets are echoed on a port specified by the user. Incoming packets' source IP address, source port, payload size (bytes), and payload message are displayed in the console.
 
 The app accepts three case-sensitive commands: start, stop, and exit. 
 
