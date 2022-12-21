@@ -9,7 +9,7 @@ Enter *echo start port number* to start the echo server on the desired local por
 
 Enter *echo stop* to stop the echo server.
 
-Ener *exit* to exit the app.
+Enter *exit* to exit the app.
 
 Future updates:
 - Client mode
