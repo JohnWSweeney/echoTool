@@ -3,7 +3,7 @@
 
 extern std::atomic<bool> echoStatus;
 
-void echo(int localPortNum, long s, long us)
+void echo(int localPortNum)
 {
 	udpSocket udpEcho;
 	udpEcho.openSocket(localPortNum);
@@ -13,7 +13,7 @@ void echo(int localPortNum, long s, long us)
 	datagram rxDatagram;
 	while (echoStatus)
 	{
-		result = udpEcho.rx(rxDatagram, s, us);
+		result = udpEcho.rx(rxDatagram);
 		if (result > 0)
 		{
 			std::cout << "Echo:" << std::endl;
@@ -21,7 +21,7 @@ void echo(int localPortNum, long s, long us)
 			std::cout << "Source port: " << rxDatagram.sin_port << std::endl;
 			std::cout << "Payload size: " << rxDatagram.payloadLen << std::endl;
 			std::cout << "Payload: " << rxDatagram.payload << "\n" << std::endl;
-			udpEcho.tx(inet_ntoa(rxDatagram.sin_addr), rxDatagram.sin_port, rxDatagram.payload, rxDatagram.payloadLen, s, us);
+			udpEcho.tx(inet_ntoa(rxDatagram.sin_addr), rxDatagram.sin_port, rxDatagram.payload, rxDatagram.payloadLen);
 		}
 	}
 

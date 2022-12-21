@@ -1,7 +1,7 @@
 #include "udp.h"
 #include "select.h"
 
-int udpSocket::socketReadStatus(SOCKET udpSocketServer, long s, long us)
+int udpSocket::socketReadStatus(SOCKET udpSocketServer)
 {
 	FD_SET readfds;
 	FD_ZERO(&readfds);
@@ -14,7 +14,7 @@ int udpSocket::socketReadStatus(SOCKET udpSocketServer, long s, long us)
 	return select(0, &readfds, 0, 0, &timeout);//Check socket RX status.
 }
 
-int udpSocket::socketWriteStatus(SOCKET udpSocketServer, long s, long us)
+int udpSocket::socketWriteStatus(SOCKET udpSocketServer)
 {
 	FD_SET writefds;
 	FD_ZERO(&writefds);
@@ -52,7 +52,7 @@ void udpSocket::openSocket(int localPortNum)
 	}
 } 
 
-int udpSocket::rx(datagram& rxDatagram, long s, long us)
+int udpSocket::rx(datagram& rxDatagram)
 {
 	struct sockaddr_in rxAddr;//Dummy socket struct to hold RX packet fields.
 	int rxAddrSize = sizeof(rxAddr);
@@ -60,7 +60,7 @@ int udpSocket::rx(datagram& rxDatagram, long s, long us)
 	char rxbuf[1472] = { 0 }; //Payload buffer.
 	int rxbuflen = sizeof(rxbuf);//Payload buffer size in bytes.
 
-	int rxReady = socketReadStatus(udpSocketServer, s, us);//Check if socket RX ready.
+	int rxReady = socketReadStatus(udpSocketServer);//Check if socket RX ready.
 	if (rxReady > 0)
 	{
 		int rxbytes = recvfrom(udpSocketServer, rxbuf, rxbuflen, 0, (SOCKADDR *) & rxAddr, &rxAddrSize);
@@ -79,7 +79,7 @@ int udpSocket::rx(datagram& rxDatagram, long s, long us)
 	}
 }
 
-void udpSocket::tx(const char* destIP, int destPortNum, const char *buf, int len, long s, long us)
+void udpSocket::tx(const char* destIP, int destPortNum, const char *buf, int len)
 {
 	//Destination socket parameters.
 	struct sockaddr_in destSock;
@@ -87,7 +87,7 @@ void udpSocket::tx(const char* destIP, int destPortNum, const char *buf, int len
 	destSock.sin_addr.s_addr = inet_addr(destIP);
 	destSock.sin_port = destPortNum;
 
-	int txReady = socketWriteStatus(udpSocketServer, s, us);//Check if socket TX ready.
+	int txReady = socketWriteStatus(udpSocketServer);//Check if socket TX ready.
 	if (txReady > 0)
 	{
 		result = sendto(udpSocketServer, buf, len, 0, (SOCKADDR *)& destSock, sizeof(destSock));

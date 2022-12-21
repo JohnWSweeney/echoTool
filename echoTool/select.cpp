@@ -26,9 +26,8 @@ void start()
 				try {
 					int portNum = std::stoi(tokens[2]);
 					echoStatus = true;
-					std::thread echoThread(echo, portNum, 0, 1);
+					std::thread echoThread(echo, portNum);
 					echoThread.detach();
-					//std::cout << "echo started." << std::endl;
 				}
 				catch (...) {
 					std::cout << "Invalid port number. Try again dummy." << std::endl;
@@ -47,7 +46,7 @@ void start()
 		{
 			running = false;
 			std::cout << "Exiting..." << std::endl;
-			Sleep(4000);
+			Sleep(2000);
 		}
 		else
 		{

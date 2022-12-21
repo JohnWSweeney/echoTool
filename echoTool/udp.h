@@ -17,14 +17,16 @@ struct datagram
 class udpSocket
 {
 public:
+	long s = 0;
+	long us = 1;
 	int result = 0;
 	SOCKET udpSocketServer;
-	int socketReadStatus(SOCKET udpSocketServer, long s, long us);
-	int socketWriteStatus(SOCKET udpSocketServer, long s, long us);
+	int socketReadStatus(SOCKET udpSocketServer);
+	int socketWriteStatus(SOCKET udpSocketServer);
 	void openSocket(int localPortNum);
-	int rx(datagram& rxDatagram, long s, long us);
-	void tx(const char* destIP, int destPortNum, const char *buf, int len, long s, long us);
+	int rx(datagram& rxDatagram);
+	void tx(const char* destIP, int destPortNum, const char *buf, int len);
 	void closeSocket();
 };
 
-void echo(int localPortNum, long s, long us);
+void echo(int localPortNum);
