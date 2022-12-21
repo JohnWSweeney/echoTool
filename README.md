@@ -17,4 +17,4 @@ Future updates:
 
 ## Download ##
 Stand alone executable
-[](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.0/echoTool.exe) [170 kB]
+[echoTool/releases/download/v1.0.0/echoTool.exe](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.0/echoTool.exe) [170 kB]
