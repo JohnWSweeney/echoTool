@@ -4,8 +4,10 @@ A simple command line interface UDP echo server. Packets are echoed on a port sp
 
 The app accepts three case-sensitive commands: start, stop, and exit. 
 
-Enter *echo start port number* to start the echo server on the desired port. For example:
+Enter *echo start port number* to start the echo server on the desired port. For example,
 > echo start 123
+
+echos packets on local port 123.
 
 Enter *echo stop* to stop the echo server.
 
