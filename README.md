@@ -14,3 +14,7 @@ Enter *exit* to exit the app.
 Future updates:
 - Client mode
 - TCP support
+
+## Download ##
+Stand alone executable
+[](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.0/echoTool.exe) [170 kB]
