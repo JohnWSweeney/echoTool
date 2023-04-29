@@ -21,4 +21,4 @@ The udpSocket class (udp.h and udp.cpp) is a drop-in solution for anyone needing
 - See my ethernetTool project repository.
 
 ### Download ##
-[echoTool v1.0.0](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.0/echoTool.exe) [170 kB]
+[echoTool v1.0.1](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.1/echoTool_v1_0_1.exe) [170 kB]
