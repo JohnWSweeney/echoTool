@@ -18,7 +18,7 @@
     <ClInclude Include="udp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="select.h">
+    <ClInclude Include="echoTool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,8 +32,13 @@
     <ClCompile Include="udpFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="select.cpp">
+    <ClCompile Include="start.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

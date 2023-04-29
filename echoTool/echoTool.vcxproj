@@ -123,14 +123,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="select.h" />
+    <ClInclude Include="echoTool.h" />
     <ClInclude Include="udp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="select.cpp" />
+    <ClCompile Include="start.cpp" />
     <ClCompile Include="udp.cpp" />
     <ClCompile Include="udpFunctions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

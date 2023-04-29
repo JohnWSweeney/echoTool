@@ -1,19 +1,24 @@
 # echoTool
 
-A simple command line interface UDP echo server. Packets are echoed on a port specified by the user. Incoming packets' source IP address, source port, payload size (bytes), and payload message are displayed in the console.
+A Windows console UDP echo server app. Packets are echoed on the port(s) specified by the user. Incoming packets' source IP address, source port, payload size (bytes), and payload are displayed in the console. App supports multithreading, allowing echo function calls on multiple ports simultaneously.
 
-The app accepts three case-sensitive commands: start, stop, and exit. 
+To start or stop a thread running the echo function, enter:
+> *echo start portNumber*
 
-Enter *echo start port number* to start the echo server on the desired local port. For example,
-> echo start 123
+> *echo stop*
 
-Enter *echo stop* to stop the echo server.
+To stop all active threads and exit the program, enter:
+> *exit*
 
-Enter *exit* to close the app.
+Commands are case-sensitive.
 
-Future updates:
-- Client mode
-- TCP support
+### Motivation
+I needed a simple UDP diagnostic tool to troubleshoot an FPGA ethernet project. Acheiving that goal really leveled up my C++ skills, requiring me to learn classes, multithreading, basic networking, and more complex program stuctures.  
 
-## Download ##
+The udpSocket class (udp.h and udp.cpp) is a drop-in solution for anyone needing UDP functionality. 
+
+### Future Updates
+- See my ethernetTool project repository.
+
+### Download ##
 [echoTool v1.0.0](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.0/echoTool.exe) [170 kB]

@@ -1,5 +1,7 @@
+#include "echoTool.h"
 #include "udp.h"
-#include "select.h"
+#include <thread>
+#include <atomic>
 
 extern std::atomic<bool> echoStatus;
 

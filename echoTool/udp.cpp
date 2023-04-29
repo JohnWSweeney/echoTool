@@ -1,5 +1,4 @@
 #include "udp.h"
-#include "select.h"
 
 int udpSocket::socketReadStatus(SOCKET udpSocketServer)
 {
@@ -52,7 +51,7 @@ void udpSocket::openSocket(int localPortNum)
 	}
 } 
 
-int udpSocket::rx(datagram& rxDatagram)
+int udpSocket::rx(datagram &rxDatagram)
 {
 	struct sockaddr_in rxAddr;//Dummy socket struct to hold RX packet fields.
 	int rxAddrSize = sizeof(rxAddr);

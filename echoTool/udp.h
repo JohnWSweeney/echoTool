@@ -24,9 +24,7 @@ public:
 	int socketReadStatus(SOCKET udpSocketServer);
 	int socketWriteStatus(SOCKET udpSocketServer);
 	void openSocket(int localPortNum);
-	int rx(datagram& rxDatagram);
+	int rx(datagram &rxDatagram);
 	void tx(const char* destIP, int destPortNum, const char *buf, int len);
 	void closeSocket();
 };
-
-void echo(int localPortNum);
