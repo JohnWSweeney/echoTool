@@ -26,4 +26,4 @@ v1.0.2
 - Added (rxReady < 0) condition to socketReadStatus to prevent looping on listen, echo funcitons on release build.
 
 ### Download ##
-[echoTool v1.0.2](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.2/echoTool_v1_0_2.exe) [170 kB]
+[echoTool v1.0.2](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.2/echoTool_v1_0_2.exe) [30 kB]
