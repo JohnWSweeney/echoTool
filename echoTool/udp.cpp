@@ -51,7 +51,7 @@ void udpSocket::openSocket(int localPortNum)
 	}
 } 
 
-int udpSocket::rx(datagram &rxDatagram)
+int udpSocket::rx(datagram& rxDatagram)
 {
 	struct sockaddr_in rxAddr;//Dummy socket struct to hold RX packet fields.
 	int rxAddrSize = sizeof(rxAddr);
@@ -62,7 +62,7 @@ int udpSocket::rx(datagram &rxDatagram)
 	int rxReady = socketReadStatus(udpSocketServer);//Check if socket RX ready.
 	if (rxReady > 0)
 	{
-		int rxbytes = recvfrom(udpSocketServer, rxbuf, rxbuflen, 0, (SOCKADDR *) & rxAddr, &rxAddrSize);
+		int rxbytes = recvfrom(udpSocketServer, rxbuf, rxbuflen, 0, (SOCKADDR *)&rxAddr, &rxAddrSize);
 		if (rxbytes > 0)
 		{
 			rxDatagram.sin_addr = rxAddr.sin_addr;
@@ -75,6 +75,10 @@ int udpSocket::rx(datagram &rxDatagram)
 		{
 			return 0;
 		}
+	}
+	else // Necessary to prevent looping on listen, echo.
+	{
+		return 0;
 	}
 }
 

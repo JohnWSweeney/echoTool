@@ -20,5 +20,10 @@ The udpSocket class (udp.h and udp.cpp) is a drop-in solution for anyone needing
 ### Future Updates
 - See my ethernetTool project repository.
 
+### ChangeLog <br/>
+v1.0.2
+- Compliled for "release" instead of "debug" (oops). 
+- Added (rxReady < 0) condition to socketReadStatus to prevent looping on listen, echo funcitons on release build.
+
 ### Download ##
-[echoTool v1.0.1](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.1/echoTool_v1_0_1.exe) [170 kB]
+[echoTool v1.0.2](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.2/echoTool_v1_0_2.exe) [170 kB]
