@@ -1,12 +1,11 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include <vector>
+#include <sstream>
+#include <thread>
+#include <Windows.h>
 
-// start.cpp
 void getInput(std::vector<std::string> &tokens);
 void startEchoThread(std::vector<std::string> &tokens);
-void selectThread(bool &running, std::vector<std::string> &tokens);
-void start();
-
-// udpFunctions.cpp
-void echo(int localPortNum);
+void startMenu(bool &running, std::vector<std::string> &tokens);

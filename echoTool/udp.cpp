@@ -82,7 +82,7 @@ int udpSocket::rx(datagram& rxDatagram)
 	}
 }
 
-void udpSocket::tx(const char* destIP, int destPortNum, const char *buf, int len)
+int udpSocket::tx(const char* destIP, int destPortNum, const char *buf, int len)
 {
 	//Destination socket parameters.
 	struct sockaddr_in destSock;
@@ -93,10 +93,15 @@ void udpSocket::tx(const char* destIP, int destPortNum, const char *buf, int len
 	int txReady = socketWriteStatus(udpSocketServer);//Check if socket TX ready.
 	if (txReady > 0)
 	{
-		result = sendto(udpSocketServer, buf, len, 0, (SOCKADDR *)& destSock, sizeof(destSock));
+		result = sendto(udpSocketServer, buf, len, 0, (SOCKADDR *)&destSock, sizeof(destSock));
 		if (result == SOCKET_ERROR)
 		{
 			std::cout << "sendto failed with error: " << WSAGetLastError() << std::endl;
+			return 1;
+		}
+		else
+		{
+			return 0;
 		}
 	}
 }

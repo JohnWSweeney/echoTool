@@ -1,12 +1,6 @@
-#include "echoTool.h"
-#include "udp.h"
-#include <string>
-#include <sstream>
-#include <Windows.h>
-#include <thread>
-#include <atomic>
-
-std::atomic<bool> echoStatus;
+#include "start.h"
+#include "udpFunctions.h"
+#include "atomicBool.h"
 
 void getInput(std::vector<std::string> &tokens)
 {
@@ -33,7 +27,7 @@ void startEchoThread(std::vector<std::string> &tokens)
 			echoThread.detach();
 		}
 		catch (...) {
-			std::cout << "Invalid port number. Try again dummy." << std::endl;
+			std::cout << "Invalid port number. Try again.\n";
 		}
 	}
 	else if (tokens[1] == "stop")
@@ -42,17 +36,31 @@ void startEchoThread(std::vector<std::string> &tokens)
 	}
 	else
 	{
-		std::cout << "Invalid command. Try again." << std::endl;
+		std::cout << "Invalid command. Try again.\n";
 	}
 }
 
-void selectThread(bool &running, std::vector<std::string> &tokens)
+void startMenu(bool &running, std::vector<std::string> &tokens)
 {
+	// start new thread running echo function.
 	if (tokens[0] == "echo")
 	{
 		startEchoThread(tokens);
 	}
-	// Terminate active thread, program.
+	// stop all active threads.
+	else if (tokens[0] == "stop")
+	{
+		if (tokens[1] == "all")
+		{
+			echoStatus = false;
+			std::cout << "All threads stopped.\n";
+		}
+		else
+		{
+			std::cout << "Invalid command. Try again.\n";
+		}
+	}
+	// Terminate active threads, program.
 	else if (tokens[0] == "exit")
 	{
 		echoStatus = false;
@@ -62,18 +70,7 @@ void selectThread(bool &running, std::vector<std::string> &tokens)
 	// Reject all other inputs.
 	else
 	{
-		std::cout << "Invalid input. Try again." << std::endl;
+		std::cout << "Invalid input. Try again.\n";
 	}
 	tokens.clear();
-}
-
-void start()
-{
-	bool running = true;
-	std::vector<std::string> tokens;
-	while (running)
-	{
-		getInput(tokens);
-		selectThread(running, tokens);
-	}
 }

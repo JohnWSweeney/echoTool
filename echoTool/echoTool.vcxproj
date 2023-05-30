@@ -123,10 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="echoTool.h" />
+    <ClInclude Include="atomicBool.h" />
+    <ClInclude Include="start.h" />
     <ClInclude Include="udp.h" />
+    <ClInclude Include="udpFunctions.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="atomicBool.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="start.cpp" />
     <ClCompile Include="udp.cpp" />

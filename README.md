@@ -1,29 +1,43 @@
 # echoTool
 
-A Windows console UDP echo server app. Packets are echoed on the port(s) specified by the user. Incoming packets' source IP address, source port, payload size (bytes), and payload are displayed in the console. App supports multithreading, allowing echo function calls on multiple ports simultaneously.
+A Windows console UDP echo server app. Packets are echoed on the port specified by the user. Incoming packets' source IP address, source port, payload size (in bytes), and payload are displayed in the console. The app supports multithreading, allowing echo function calls on multiple ports simultaneously.
 
+### Motivation
+I needed a simple UDP diagnostic tool to troubleshoot an FPGA ethernet project. I didnt know much C++ at the time, so this project was an opportunity to learn more of the basics, such as classes, basic networking, and even multithreading. If you like this app but are looking for more TCP/IP functionality, check out my [ethernetTool](https://github.com/JohnWSweeney/ethernetTool) repo. 
+
+The udpSocket class (udp.h and udp.cpp) is a drop-in solution for anyone needing basic C++ UDP functionality. 
+
+## Functions
+The app opens a console window on startup. Enter the *command* keywords separated by a space. Commands are currently case-sensitive and must be lower-case.
+
+## Echo Function
 To start or stop a thread running the echo function, enter:
-> *echo start portNumber*
+> *echo start localPortNumber* <br/>
+> *echo stop* <br/>
 
-> *echo stop*
+where *localPortNumber* is the port on your PC where you expect to receive packets. The echo function is threaded, so you can echo on multiple ports at the same time.
+
+### App Control
+To stop all active threads, enter:
+> *stop all*
 
 To stop all active threads and exit the program, enter:
 > *exit*
 
-Commands are case-sensitive.
+## Future Updates
+- See my [ethernetTool](https://github.com/JohnWSweeney/ethernetTool) project repository. 
 
-### Motivation
-I needed a simple UDP diagnostic tool to troubleshoot an FPGA ethernet project. Acheiving that goal really leveled up my C++ skills, requiring me to learn classes, multithreading, basic networking, and more complex program stuctures.  
+## Download ##
+[echoTool v1.0.3](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.3/echoTool_v1_0_3.exe) [32 kB]
 
-The udpSocket class (udp.h and udp.cpp) is a drop-in solution for anyone needing UDP functionality. 
+## ChangeLog <br/>
+v1.0.3
+- Each .cpp now has its own header.
+- Moved echo function's atomic bool status variable to separate .h/.cpp files.
+- Added console output of total packets echoed since runtime.
+- Integrated start function into main(). 
+- Added stop all threads function.
 
-### Future Updates
-- See my ethernetTool project repository.
-
-### ChangeLog <br/>
 v1.0.2
 - Compliled for "release" instead of "debug" (oops). 
-- Added (rxReady < 0) condition to socketReadStatus to prevent looping on listen, echo funcitons on release build.
-
-### Download ##
-[echoTool v1.0.2](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.2/echoTool_v1_0_2.exe) [30 kB]
+- Added (rxReady < 0) condition to socketReadStatus function in udp.cpp to prevent looping in echo function on release build.
