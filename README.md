@@ -15,7 +15,9 @@ To start or stop a thread running the echo function, enter:
 > *echo start localPortNumber* <br/>
 > *echo stop* <br/>
 
-where *localPortNumber* is the port on your PC where you expect to receive packets. The echo function is threaded, so you can echo on multiple ports at the same time.
+where *localPortNumber* is the port where you expect to receive packets. Received packets' source address/port, payload, payload size (bytes), and number of packets echoed since runtime are printed to the console.The echo function is threaded, so you can echo on multiple ports at the same time.
+
+NOTE: I haven't yet figured out to control individual threads (assuming it's possible), so *echo stop* will terminate *all* active echo threads.
 
 ### App Control
 To stop all active threads, enter:
@@ -25,12 +27,17 @@ To stop all active threads and exit the program, enter:
 > *exit*
 
 ## Future Updates
+- Command case-insensitivity.
 - See my [ethernetTool](https://github.com/JohnWSweeney/ethernetTool) project repository. 
 
-## Download ##
-[echoTool v1.0.3](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.3/echoTool_v1_0_3.exe) [32 kB]
+## Download
+[echoTool v1.0.4](https://github.com/JohnWSweeney/echoTool/releases/download/v1.0.4/echoTool_v1_0_4.exe) [33 kB]
 
 ## ChangeLog <br/>
+v1.0.4
+- Updated error handling in udp class and echo, startEchoThread functions.
+- Updated recvfrom buffer to maximum possible size of 65,527 bytes.
+
 v1.0.3
 - Each .cpp now has its own header.
 - Moved echo function's atomic bool status variable to separate .h/.cpp files.

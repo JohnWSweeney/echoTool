@@ -26,8 +26,13 @@ void startEchoThread(std::vector<std::string> &tokens)
 			std::thread echoThread(echo, portNum);
 			echoThread.detach();
 		}
-		catch (...) {
-			std::cout << "Invalid port number. Try again.\n";
+		catch (std::invalid_argument)
+		{
+			std::cout << "Invalid port number.\n";
+		}
+		catch (std::out_of_range)
+		{
+			std::cout << "Port number is out of range.\n";
 		}
 	}
 	else if (tokens[1] == "stop")
@@ -36,7 +41,7 @@ void startEchoThread(std::vector<std::string> &tokens)
 	}
 	else
 	{
-		std::cout << "Invalid command. Try again.\n";
+		std::cout << "Invalid start/stop command.\n";
 	}
 }
 
@@ -57,7 +62,7 @@ void startMenu(bool &running, std::vector<std::string> &tokens)
 		}
 		else
 		{
-			std::cout << "Invalid command. Try again.\n";
+			std::cout << "Invalid command.\n";
 		}
 	}
 	// Terminate active threads, program.
@@ -70,7 +75,7 @@ void startMenu(bool &running, std::vector<std::string> &tokens)
 	// Reject all other inputs.
 	else
 	{
-		std::cout << "Invalid input. Try again.\n";
+		std::cout << "Invalid function command.\n";
 	}
 	tokens.clear();
 }

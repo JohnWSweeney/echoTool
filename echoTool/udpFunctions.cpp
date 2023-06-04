@@ -4,15 +4,23 @@
 
 void echo(int localPortNum)
 {
-	udpSocket udpEcho;
-	udpEcho.openSocket(localPortNum);
+	udp udpEcho;
+	int result = udpEcho.openSocket(localPortNum);
+	if (result != 0)
+	{
+		std::cout << "openSocket failed.\n";
+		echoStatus = false;
+	}
+	else
+	{
+		std::cout << "Echoing on port " << localPortNum << "...\n\n";
+	}
 
-	std::cout << "Echoing on port " << localPortNum << "...\n\n";
 	datagram rxDatagram;
 	int packetsEchoed = 0;
 	while (echoStatus)
 	{
-		int result = udpEcho.rx(rxDatagram);
+		result = udpEcho.rx(rxDatagram);
 		if (result > 0)
 		{
 			std::cout << "Echoed:" << '\n';

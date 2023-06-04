@@ -14,17 +14,17 @@ struct datagram
 	char payload[1472] = { 0 };
 };
 
-class udpSocket
+class udp
 {
 public:
 	long s = 0;
 	long us = 1;
 	int result = 0;
-	SOCKET udpSocketServer;
-	int socketReadStatus(SOCKET udpSocketServer);
-	int socketWriteStatus(SOCKET udpSocketServer);
-	void openSocket(int localPortNum);
+	SOCKET udpSocket = INVALID_SOCKET;
+	int socketReadStatus(SOCKET &udpSocket);
+	int socketWriteStatus(SOCKET &udpSocket);
+	int openSocket(int localPortNum);
 	int rx(datagram &rxDatagram);
 	int tx(const char* destIP, int destPortNum, const char *buf, int len);
-	void closeSocket();
+	int closeSocket();
 };
