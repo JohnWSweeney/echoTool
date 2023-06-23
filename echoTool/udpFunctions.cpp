@@ -23,7 +23,7 @@ void echo(int localPortNum)
 		result = udpEcho.rx(rxDatagram);
 		if (result > 0)
 		{
-			std::cout << "Echoed:" << '\n';
+			std::cout << "Echoed on port: " << localPortNum << '\n';
 			std::cout << "Source address: " << inet_ntoa(rxDatagram.sin_addr) << '\n';
 			std::cout << "Source port: " << rxDatagram.sin_port << '\n';
 			std::cout << "Payload size: " << rxDatagram.payloadLen << '\n';
@@ -34,5 +34,5 @@ void echo(int localPortNum)
 		}
 	}
 	udpEcho.closeSocket();
-	std::cout << "Echo terminated on port " << localPortNum << ".\n\n";
+	std::cout << "Echo terminated on port " << localPortNum << ".\n";
 }
