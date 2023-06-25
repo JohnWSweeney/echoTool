@@ -2,7 +2,7 @@
 
 int main()
 {
-	std::cout << "echoTool v1.1.0\n";
+	std::cout << "echoTool v1.1.1\n\n";
 	bool running = true;
 	std::vector<std::string> tokens;
 	while (running)

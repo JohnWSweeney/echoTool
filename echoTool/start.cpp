@@ -1,11 +1,9 @@
 #include "start.h"
-#include "udpFunctions.h"
-#include "tcpFunctions.h"
+#include "threads.h"
 #include "atomicBool.h"
 
 void getInput(std::vector<std::string> &tokens)
 {
-	//std::cout << '\n';
 	// Copy each word in user input to vector (tokenize).
 	do {
 		std::string input, tempStr;
@@ -16,64 +14,6 @@ void getInput(std::vector<std::string> &tokens)
 			tokens.push_back(tempStr);
 		}
 	} while (tokens.empty());
-}
-
-void startEchoThread(std::vector<std::string> &tokens)
-{
-	if (tokens[1] == "start")
-	{
-		try {
-			int portNum = std::stoi(tokens[2]);
-			echoStatus = true;
-			std::thread echoThread(echo, portNum);
-			echoThread.detach();
-		}
-		catch (std::invalid_argument)
-		{
-			std::cout << "Invalid port number.\n";
-		}
-		catch (std::out_of_range)
-		{
-			std::cout << "Port number is out of range.\n";
-		}
-	}
-	else if (tokens[1] == "stop")
-	{
-		echoStatus = false;
-	}
-	else
-	{
-		std::cout << "Invalid start/stop command.\n";
-	}
-}
-
-void startServerThread(std::vector<std::string> &tokens)
-{
-	if (tokens[1] == "start")
-	{
-		try {
-			int portNum = std::stoi(tokens[2]);
-			serverStatus = true;
-			std::thread echoThread(startServer, portNum);
-			echoThread.detach();
-		}
-		catch (std::invalid_argument)
-		{
-			std::cout << "Invalid port number.\n";
-		}
-		catch (std::out_of_range)
-		{
-			std::cout << "Port number is out of range.\n";
-		}
-	}
-	else if (tokens[1] == "stop")
-	{
-		serverStatus = false;
-	}
-	else
-	{
-		std::cout << "Invalid start/stop command.\n";
-	}
 }
 
 void startMenu(bool &running, std::vector<std::string> &tokens)
@@ -94,7 +34,6 @@ void startMenu(bool &running, std::vector<std::string> &tokens)
 		{
 			echoStatus = false;
 			serverStatus = false;
-			std::cout << "All threads stopped.\n";
 		}
 		else
 		{

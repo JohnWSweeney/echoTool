@@ -27,13 +27,16 @@
     <ClInclude Include="udpFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clientServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tcp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tcpFunctions.h">
+    <ClInclude Include="server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="threads.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,13 +56,16 @@
     <ClCompile Include="atomicBool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clientServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tcp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tcpFunctions.cpp">
+    <ClCompile Include="threads.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="session.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

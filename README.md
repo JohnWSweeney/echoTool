@@ -13,8 +13,8 @@ The app opens a console window on startup. Enter the *command* keywords separate
 ## Echo Functions
 ### UDP Echo
 To start or stop a thread running the udp echo function, enter:
-> *echo start portNumber* <br/>
-> *echo stop* <br/>
+> `echo start portNumber` <br/>
+> `echo stop` <br/>
 
 where *portNumber* is the port where you expect to receive packets. Received packets' source address/port, payload, payload size (bytes), and number of packets echoed since runtime are printed to the console.The echo function is threaded, so you can echo on multiple ports at the same time.
 
@@ -22,24 +22,28 @@ NOTE: I haven't yet figured out to control individual threads (assuming it's pos
 
 ### TCP Echo Server
 Similarly, to start or stop a thread running the TCP echo server, enter:
-> *server start portNumber* <br/>
-> *server stop* <br/>
+> `server start portNumber` <br/>
+> `server stop` <br/>
 
 ### App Control
 To stop all active threads, enter:
-> *stop all*
+> `stop all`
 
 To stop all active threads and exit the program, enter:
-> *exit*
+> `exit`
 
 ## Future Updates
 - Command case-insensitivity.
 - See my [ethernetTool](https://github.com/JohnWSweeney/ethernetTool) project repository. 
 
 ## Download
-[echoTool v1.1.0](https://github.com/JohnWSweeney/echoTool/releases/download/v1.1.0/echoTool_v1_1_0.exe) [39 kB]
+[echoTool v1.1.1](https://github.com/JohnWSweeney/echoTool/releases/download/v1.1.1/echoTool_v1_1_1.exe) [40 kB]
 
 ## ChangeLog
+v1.1.1
+- Sessions are now threaded.
+- Added session and server classes.
+
 v1.1.0
 - Added tcp class and tcp echo server function/thread.
 

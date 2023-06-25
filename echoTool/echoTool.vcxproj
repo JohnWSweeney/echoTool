@@ -124,20 +124,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="atomicBool.h" />
-    <ClInclude Include="clientServer.h" />
+    <ClInclude Include="server.h" />
+    <ClInclude Include="session.h" />
     <ClInclude Include="start.h" />
     <ClInclude Include="tcp.h" />
-    <ClInclude Include="tcpFunctions.h" />
+    <ClInclude Include="threads.h" />
     <ClInclude Include="udp.h" />
     <ClInclude Include="udpFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="atomicBool.cpp" />
-    <ClCompile Include="clientServer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="server.cpp" />
+    <ClCompile Include="session.cpp" />
     <ClCompile Include="start.cpp" />
     <ClCompile Include="tcp.cpp" />
-    <ClCompile Include="tcpFunctions.cpp" />
+    <ClCompile Include="threads.cpp" />
     <ClCompile Include="udp.cpp" />
     <ClCompile Include="udpFunctions.cpp" />
   </ItemGroup>
